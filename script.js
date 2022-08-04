@@ -8,3 +8,5 @@ googleButton.addEventListener("click", dowloadApp(linkToAppStore))
 googleButton.addEventListener("click", dowloadApp(linkToAppStore));
 
 const dowloadApp= (link)=>  location.reload(link)
+
+console.log(hola)

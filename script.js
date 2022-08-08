@@ -7,10 +7,10 @@ document.addEventListener("DOMContentLoaded", function() {
   const linkToAppStore =
     "https://apps.apple.com/app/apple-store/id1548817439?pt=122556632&ct=RF-Ecosistema-PePa-Banner-Home&mt=8";
 
-  googleButton.addEventListener("click", dowloadApp(linkToAppStore));
+  googleButton.addEventListener("click", e=>{console.log("Google click")});
 
-  googleButton.addEventListener("click", dowloadApp(linkToAppStore));
+  appleButton.addEventListener("click", e=>{console.log("Apple click")});
 
-  const dowloadApp = (link) => location.reload(link);
+ // const dowloadApp = (link) => location.reload(link);
 
 });

@@ -1,5 +1,5 @@
-const appleButton = document.getElementById("AppleButton_plane");
-const googleButton = document.getElementById("GoogleButton_plane");
+const appleButton = document.gquerySelector("#AppleButton_plane");
+const googleButton = document.querySelector("#GoogleButton_plane");
 const linkToPlayStore =
   "https://play.google.com/store/apps/details?id=ar.com.personalpay&referrer=utm_source%3DPePa%26utm_medium%3Dreferral%26utm_term%3Dhome-BanHer%26utm_content%3DDesc_Andr-plata_personal%26utm_campaign%3DRF-Ecosistema";
 const linkToAppStore =

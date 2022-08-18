@@ -5,27 +5,10 @@
     <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image.prod.js"></script>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image-aframe.prod.js"></script>
-    
-    <script>
-      document.addEventListener("DOMContentLoaded", function() {
-      const appleButton = document.querySelector("#AppleButton_plane");
-      const googleButton = document.querySelector("#GoogleButton_plane");
-      const linkToPlayStore =
-        "https://play.google.com/store/apps/details?id=ar.com.personalpay&referrer=utm_source%3DPePa%26utm_medium%3Dreferral%26utm_term%3Dhome-BanHer%26utm_content%3DDesc_Andr-plata_personal%26utm_campaign%3DRF-Ecosistema";
-      const linkToAppStore =
-        "https://apps.apple.com/app/apple-store/id1548817439?pt=122556632&ct=RF-Ecosistema-PePa-Banner-Home&mt=8";
-
-      googleButton.addEventListener("click", e=>{dowloadApp(linkToPlayStore)});
-
-      appleButton.addEventListener("click", e=>{dowloadApp(linkToAppStore)});
-
-      const dowloadApp = (link) => window.open(link);
-
-    });
-    </script>
+    <script src="script.js"></script>
   </head>
   <body>
-    <a-scene mindar-image="imageTargetSrc: assets/pedidoYa.mind; filterMinCF:0.1; filterBeta: 10; " vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights">
+    <a-scene mindar-image="imageTargetSrc: assets/pedidoYa.mind; filterMinCF:0.00001; filterBeta: 100000; " vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights">
       <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: ${customFields.libVersion}; objects: .clickable"></a-camera>
 
       <a-entity mindar-image-target="targetIndex: 0">
@@ -45,6 +28,6 @@
       </a-assets>
 
     </a-scene>
-    <!--<script scr="script.js"></script>-->
+   <script scr="script.js" type="text/javascript"></script>
   </body>
 </html>

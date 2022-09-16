@@ -165,7 +165,7 @@
     }
   
     /** Place a sunflower when the screen is tapped. */
-     onSelect = () => {
+   /*   onSelect = () => {
        if (window.sunflower) {
         const clone = window.sunflower.clone();
         clone.position.copy(this.reticle.position);
@@ -174,7 +174,19 @@
         const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
         shadowMesh.position.y = clone.position.y;
        }
-     }
+     } */
+
+     /** Place a Ppay Card when the screen is tapped. */
+     onSelect = () => {
+      if (window.card) {
+       const clone = window.card.clone();
+       clone.position.copy(this.reticle.position);
+       this.scene.add(clone)
+   
+       const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
+       shadowMesh.position.y = clone.position.y;
+      }
+    }
   }
   
   window.app = new App();

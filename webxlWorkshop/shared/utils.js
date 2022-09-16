@@ -23,6 +23,12 @@ window.gltfLoader.load("https://immersive-web.github.io/webxr-samples/media/gltf
   window.sunflower = gltf.scene;
 });
 
+window.gltfLoader.load("https://github.com/CristianAlegreBustos/WebAr/blob/main/webxlWorkshop/assets/tarjeta3d.glb", function(gltf) {
+  const card = gltf.scene.children.find(c => c.name === 'card')
+  card.castShadow = true;
+  window.card = gltf.scene;
+});
+
 
 window.DemoUtils = {
   /**

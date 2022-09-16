@@ -75,12 +75,14 @@
       this.viewerSpace = await this.xrSession.requestReferenceSpace('viewer');
   
       /** Perform hit testing using the viewer as origin. */
-      this.hitTestSource = await this.xrSession.requestHitTestSource({ space: this.viewerSpace });
+      this.hitTestSource = await this.xrSession.requestHitTestSource({
+         space: this.viewerSpace 
+        });
   
       /** Start a rendering loop using this.onXRFrame. */
       this.xrSession.requestAnimationFrame(this.onXRFrame);
   
-      // this.xrSession.addEventListener("select", this.onSelect);
+      this.xrSession.addEventListener("select", this.onSelect);
     }
   
     /**
@@ -146,8 +148,8 @@
         context: this.gl
       });
       this.renderer.autoClear = false;
-      // this.renderer.shadowMap.enabled = true;
-      // this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+       this.renderer.shadowMap.enabled = true;
+       this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   
       /** Initialize our demo scene. */
       //this.scene = DemoUtils.createCubeScene();
@@ -163,16 +165,16 @@
     }
   
     /** Place a sunflower when the screen is tapped. */
-    // onSelect = () => {
-    //   if (window.sunflower) {
-    //     const clone = window.sunflower.clone();
-    //     clone.position.copy(this.reticle.position);
-    //     this.scene.add(clone)
-    //
-    //     const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
-    //     shadowMesh.position.y = clone.position.y;
-    //   }
-    // }
+     onSelect = () => {
+       if (window.sunflower) {
+        const clone = window.sunflower.clone();
+        clone.position.copy(this.reticle.position);
+        this.scene.add(clone)
+    
+        const shadowMesh = this.scene.children.find(c => c.name === 'shadowMesh');
+        shadowMesh.position.y = clone.position.y;
+       }
+     }
   }
   
   window.app = new App();

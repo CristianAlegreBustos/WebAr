@@ -49,7 +49,7 @@ window.DemoUtils = {
     const planeGeometry = new THREE.PlaneGeometry(2000, 2000);
     // Rotate our plane to be parallel to the floor
     planeGeometry.rotateX(-Math.PI / 2);
-
+    planeGeometry.rotateZ(-Math.PI / 2);
     // Create a mesh with a shadow material, resulting in a mesh
     // that only renders shadows once we flip the `receiveShadow` property.
     const shadowMesh = new THREE.Mesh(planeGeometry, new THREE.ShadowMaterial({

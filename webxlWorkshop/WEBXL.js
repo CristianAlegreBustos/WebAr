@@ -43,7 +43,7 @@ const createXRCanvas=(xrSession)=> {
 
 const onSessionStarted = async (xrSession) => {
   /** To help with working with 3D on the web, we'll use three.js. */
-  //setupThreeJs();
+  setupThreeJs();
 
   /** Setup an XRReferenceSpace using the "local" coordinate system. */
  let localReferenceSpace = await xrSession.requestReferenceSpace('local');

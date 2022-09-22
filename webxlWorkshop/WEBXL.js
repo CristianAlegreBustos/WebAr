@@ -31,15 +31,15 @@ const activateXR = async () => {
     console.log("No se puede activar !!!")
 }
 }
-// const createXRCanvas=(xrSession)=> {
-//   let canvas = document.createElement("canvas");
-//   document.body.appendChild(canvas);
-//   let gl = canvas.getContext("webgl", {xrCompatible: true});
+const createXRCanvas=(xrSession)=> {
+  let canvas = document.createElement("canvas");
+  document.body.appendChild(canvas);
+  let gl = canvas.getContext("webgl", {xrCompatible: true});
   
-//   xrSession.updateRenderState({
-//     baseLayer: new XRWebGLLayer(xrSession, gl)
-//   });
-// }
+  xrSession.updateRenderState({
+    baseLayer: new XRWebGLLayer(xrSession, gl)
+  });
+}
 
 // const onSessionStarted = async (xrSession) => {
 //   /** To help with working with 3D on the web, we'll use three.js. */

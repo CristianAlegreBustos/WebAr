@@ -25,7 +25,7 @@ const activateXR = async () => {
     createXRCanvas(xrSession);
 
     /** With everything set up, start the app. */
-    await onSessionStarted();
+    onSessionStarted(xrSession);
   } catch(e) {
     console.log(e);
     console.log("No se puede activar !!!")
@@ -41,26 +41,26 @@ const createXRCanvas=(xrSession)=> {
   });
 }
 
-// const onSessionStarted = async (xrSession) => {
-//   /** To help with working with 3D on the web, we'll use three.js. */
-//   setupThreeJs();
+const onSessionStarted = async (xrSession) => {
+  /** To help with working with 3D on the web, we'll use three.js. */
+  setupThreeJs();
 
-//   /** Setup an XRReferenceSpace using the "local" coordinate system. */
-//  let localReferenceSpace = await xrSession.requestReferenceSpace('local');
+  /** Setup an XRReferenceSpace using the "local" coordinate system. */
+ let localReferenceSpace = await xrSession.requestReferenceSpace('local');
 
-//   /** Create another XRReferenceSpace that has the viewer as the origin. */
-//   let viewerSpace = await xrSession.requestReferenceSpace('viewer');
+  /** Create another XRReferenceSpace that has the viewer as the origin. */
+  let viewerSpace = await xrSession.requestReferenceSpace('viewer');
 
-//   /** Perform hit testing using the viewer as origin. */
-//   let hitTestSource = await xrSession.requestHitTestSource({
-//      space: viewerSpace 
-//     });
+  /** Perform hit testing using the viewer as origin. */
+  let hitTestSource = await xrSession.requestHitTestSource({
+     space: viewerSpace 
+    });
 
-//   /** Start a rendering loop using onXRFrame. */
-//   xrSession.requestAnimationFrame(onXRFrame(xrSession,localReferenceSpace,hitTestSource));
+  /** Start a rendering loop using onXRFrame. */
+  xrSession.requestAnimationFrame(onXRFrame(xrSession,localReferenceSpace,hitTestSource));
 
-//   xrSession.addEventListener("select", onSelect());
-// }
+  xrSession.addEventListener("select", onSelect());
+}
 
 // /**
 //  * Called on the XRSession's requestAnimationFrame.

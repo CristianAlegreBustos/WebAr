@@ -28,8 +28,7 @@ const activateXR = async () => {
     await onSessionStarted();
   } catch(e) {
     console.log(e);
-    onNoXRDevice();
-  }
+    console.log("No se puede activar !!!")
 }
 
 // const createXRCanvas=(xrSession)=> {

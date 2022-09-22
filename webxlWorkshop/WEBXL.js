@@ -62,6 +62,32 @@ const onSessionStarted = async (xrSession) => {
   xrSession.addEventListener("select", onSelect());
 }
 
+const setupThreeJs=()=> {
+  /** To help with working with 3D on the web, we'll use three.js.
+   * Set up the WebGLRenderer, which handles rendering to our session's base layer. */
+  let renderer = new THREE.WebGLRenderer({
+    alpha: true,
+    preserveDrawingBuffer: true,
+    canvas: this.canvas,
+    context: this.gl
+  });
+  renderer.autoClear = false;
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+  /** Initialize our demo scene. */
+  //this.scene = Demo createCubeScene();
+  let scene = DemoUtils.createLitScene();
+  let reticle = new Reticle();
+  scene.add(reticle);
+
+  /** We'll update the camera matrices directly from API, so
+   * disable matrix auto updates so three.js doesn't attempt
+   * to handle the matrices independently. */
+  let camera = new THREE.PerspectiveCamera();
+  camera.matrixAutoUpdate = false;
+}
+
 // /**
 //  * Called on the XRSession's requestAnimationFrame.
 //  * Called with the time and XRPresentationFrame.
@@ -115,31 +141,7 @@ const onSessionStarted = async (xrSession) => {
 //      * Initialize three.js specific rendering code, including a WebGLRenderer,
 //      * a demo scene, and a camera for viewing the 3D content.
 //      */
-//  const setupThreeJs=()=> {
-//   /** To help with working with 3D on the web, we'll use three.js.
-//    * Set up the WebGLRenderer, which handles rendering to our session's base layer. */
-//   let renderer = new THREE.WebGLRenderer({
-//     alpha: true,
-//     preserveDrawingBuffer: true,
-//     canvas: this.canvas,
-//     context: this.gl
-//   });
-//   renderer.autoClear = false;
-//   renderer.shadowMap.enabled = true;
-//   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-//   /** Initialize our demo scene. */
-//   //this.scene = Demo createCubeScene();
-//   let scene = DemoUtils.createLitScene();
-//   let reticle = new Reticle();
-//   scene.add(reticle);
-
-//   /** We'll update the camera matrices directly from API, so
-//    * disable matrix auto updates so three.js doesn't attempt
-//    * to handle the matrices independently. */
-//   let camera = new THREE.PerspectiveCamera();
-//   camera.matrixAutoUpdate = false;
-// }
 
 // /** Place a sunflower when the screen is tapped. */
 // const onSelect = () => {

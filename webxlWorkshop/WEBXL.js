@@ -90,6 +90,7 @@ const setupThreeJs=()=> {
 
 const onXRFrame = (time, frame,xrSession,localReferenceSpace,hitTestSource) => {
   /** Queue up the next draw request. */
+  console.log(frame,xrSession,localReferenceSpace,hitTestSource);
   xrSession.requestAnimationFrame(onXRFrame());
 
   /** Bind the graphics framebuffer to the baseLayer's framebuffer. */

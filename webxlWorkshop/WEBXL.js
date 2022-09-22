@@ -22,7 +22,7 @@ const activateXR = async () => {
      console.log(xrSession);
 
     /** Create the canvas that will contain our camera's background and our virtual scene. */
-    createXRCanvas();
+    createXRCanvas(xrSession);
 
     /** With everything set up, start the app. */
     await onSessionStarted();

@@ -30,7 +30,7 @@ const activateXR = async () => {
     console.log(e);
     console.log("No se puede activar !!!")
 }
-
+}
 // const createXRCanvas=(xrSession)=> {
 //   let canvas = document.createElement("canvas");
 //   document.body.appendChild(canvas);
@@ -151,4 +151,4 @@ const activateXR = async () => {
 //     const shadowMesh = scene.children.find(c => c.name === 'shadowMesh');
 //     shadowMesh.position.y = clone.position.y;
 //   }
-// } 
+// }

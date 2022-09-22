@@ -6,8 +6,7 @@
   if (isArSessionSupported) { //I need to create element in the html
     document.getElementById("enter-ar").addEventListener("click", ()=>activateXR())
   } else {
-    document.getElementById("enter-ar").addEventListener("click",()=>activateXR())
-    onNoXRDevice();
+    console.log("No soporta RA")
   }
 })();
 

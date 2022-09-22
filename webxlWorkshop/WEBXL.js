@@ -45,20 +45,9 @@ const onSessionStarted = async (xrSession) => {
   /** To help with working with 3D on the web, we'll use three.js. */
   setupThreeJs();
 
-  /** Setup an XRReferenceSpace using the "local" coordinate system. */
- let localReferenceSpace = await xrSession.requestReferenceSpace('local');
-
-  /** Create another XRReferenceSpace that has the viewer as the origin. */
-  let viewerSpace = await xrSession.requestReferenceSpace('viewer');
-
-  /** Perform hit testing using the viewer as origin. */
-  let hitTestSource = await xrSession.requestHitTestSource({
-     space: viewerSpace 
-    });
-
   /** Start a rendering loop using onXRFrame. */
   console.log(xrSession,localReferenceSpace,hitTestSource);
-  xrSession.requestAnimationFrame(onXRFrame(localReferenceSpace,hitTestSource));
+  xrSession.requestAnimationFrame(onXRFrame);
 
   xrSession.addEventListener("select", onSelect());
 }
@@ -89,9 +78,19 @@ const setupThreeJs=()=> {
   camera.matrixAutoUpdate = false;
 }
 
-const onXRFrame = (time, frame,xrSession,localReferenceSpace,hitTestSource) => {
+const onXRFrame = (time, frame,xrSession) => {
+/** Create another XRReferenceSpace that has the viewer as the origin. */
+let viewerSpace = xrSession.requestReferenceSpace('viewer');
+
+/** Perform hit testing using the viewer as origin. */
+let hitTestSource = xrSession.requestHitTestSource({
+  space: viewerSpace 
+  });
+  
+    /** Setup an XRReferenceSpace using the "local" coordinate system. */
+ let localReferenceSpace =xrSession.requestReferenceSpace('local');
+  
   /** Queue up the next draw request. */
-  console.log(frame,xrSession,localReferenceSpace,hitTestSource);
   xrSession.requestAnimationFrame(onXRFrame());
 
   /** Bind the graphics framebuffer to the baseLayer's framebuffer. */

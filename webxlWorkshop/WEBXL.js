@@ -144,15 +144,9 @@ const onSelect = () => {
     shadowMesh.position.y = clone.position.y;
   }
 }
-// /**
-//  * Called on the XRSession's requestAnimationFrame.
-//  * Called with the time and XRPresentationFrame.
-//  */
 
 
-// /**
-//      * Initialize three.js specific rendering code, including a WebGLRenderer,
-//      * a demo scene, and a camera for viewing the 3D content.
-//      */
+
+
 
 

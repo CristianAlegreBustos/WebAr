@@ -46,7 +46,6 @@ const onSessionStarted = async (xrSession) => {
   setupThreeJs();
 
   /** Start a rendering loop using onXRFrame. */
-  console.log(xrSession,localReferenceSpace,hitTestSource);
   xrSession.requestAnimationFrame(onXRFrame);
 
   xrSession.addEventListener("select", onSelect());
@@ -134,6 +133,17 @@ let hitTestSource = xrSession.requestHitTestSource({
   }
 }
 
+// /** Place a sunflower when the screen is tapped. */
+const onSelect = () => {
+  if (window.sunflower) {
+    const clone = window.sunflower.clone();
+    clone.position.copy(reticle.position);
+    scene.add(clone)
+
+    const shadowMesh = scene.children.find(c => c.name === 'shadowMesh');
+    shadowMesh.position.y = clone.position.y;
+  }
+}
 // /**
 //  * Called on the XRSession's requestAnimationFrame.
 //  * Called with the time and XRPresentationFrame.
@@ -146,14 +156,3 @@ let hitTestSource = xrSession.requestHitTestSource({
 //      */
 
 
-// /** Place a sunflower when the screen is tapped. */
-// const onSelect = () => {
-//   if (window.sunflower) {
-//     const clone = window.sunflower.clone();
-//     clone.position.copy(reticle.position);
-//     scene.add(clone)
-
-//     const shadowMesh = scene.children.find(c => c.name === 'shadowMesh');
-//     shadowMesh.position.y = clone.position.y;
-//   }
-// }

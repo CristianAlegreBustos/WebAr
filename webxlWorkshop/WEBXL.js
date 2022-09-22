@@ -81,6 +81,7 @@ const setupThreeJs = () => {
 };
 
 const onXRFrame = (xrSession, time, frame) => {
+  // Watch if work OK ¿?
   console.log(xrSession);
   /** Create another XRReferenceSpace that has the viewer as the origin. */
   let viewerSpace = xrSession.requestReferenceSpace("viewer");
@@ -94,7 +95,7 @@ const onXRFrame = (xrSession, time, frame) => {
   let localReferenceSpace = xrSession.requestReferenceSpace("local");
 
   /** Queue up the next draw request. */
-  xrSession.requestAnimationFrame(onXRFrame());
+  xrSession.requestAnimationFrame(onXRFrame(xrSession, time, frame));
 
   /** Bind the graphics framebuffer to the baseLayer's framebuffer. */
   const framebuffer = xrSession.renderState.baseLayer.framebuffer;

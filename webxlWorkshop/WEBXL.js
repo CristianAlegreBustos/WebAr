@@ -57,7 +57,8 @@ const onSessionStarted = async (xrSession) => {
     });
 
   /** Start a rendering loop using onXRFrame. */
-  xrSession.requestAnimationFrame(onXRFrame(xrSession,localReferenceSpace,hitTestSource));
+  console.log(xrSession);
+  xrSession.requestAnimationFrame(onXRFrame);
 
   xrSession.addEventListener("select", onSelect());
 }

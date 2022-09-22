@@ -88,54 +88,56 @@ const setupThreeJs=()=> {
   camera.matrixAutoUpdate = false;
 }
 
+const onXRFrame = (time, frame,xrSession,localReferenceSpace,hitTestSource) => {
+  /** Queue up the next draw request. */
+  xrSession.requestAnimationFrame(onXRFrame());
+
+  /** Bind the graphics framebuffer to the baseLayer's framebuffer. */
+  const framebuffer = xrSession.renderState.baseLayer.framebuffer
+  gl.bindFramebuffer(gl.FRAMEBUFFER, framebuffer)
+  renderer.setFramebuffer(framebuffer);
+
+  /** Retrieve the pose of the device.
+   * XRFrame.getViewerPose can return null while the session attempts to establish tracking. */
+  const pose = frame.getViewerPose(localReferenceSpace);
+  if (pose) {
+  //   /** In mobile AR, we only have one view. */
+      const view = pose.views[0];
+  //
+  const viewport = xrSession.renderState.baseLayer.getViewport(view);
+  renderer.setSize(viewport.width, viewport.height)
+  //
+  //   /** Use the view's transform matrix and projection matrix to configure the THREE.camera. */
+  camera.matrix.fromArray(view.transform.matrix)
+  camera.projectionMatrix.fromArray(view.projectionMatrix);
+  camera.updateMatrixWorld(true);
+  //
+  //   /** Conduct hit test. */
+      const hitTestResults = frame.getHitTestResults(hitTestSource);
+  //
+  //   /** If we have results, consider the environment stabilized. */
+      if (!stabilized && hitTestResults.length > 0) {
+        stabilized = true;
+        document.body.classList.add('stabilized');
+      }
+      if (hitTestResults.length > 0) {
+        const hitPose = hitTestResults[0].getPose(localReferenceSpace);
+  //
+  //     /** Update the reticle position. */
+      reticle.visible = true;
+      reticle.position.set(hitPose.transform.position.x, hitPose.transform.position.y, hitPose.transform.position.z)
+      reticle.updateMatrixWorld(true);
+      }
+  //   /** Render the scene with THREE.WebGLRenderer. */
+  renderer.render(scene, camera)
+  }
+}
+
 // /**
 //  * Called on the XRSession's requestAnimationFrame.
 //  * Called with the time and XRPresentationFrame.
 //  */
-//   const onXRFrame = (time, frame,xrSession,localReferenceSpace,hitTestSource) => {
-//   /** Queue up the next draw request. */
-//   xrSession.requestAnimationFrame(onXRFrame());
 
-//   /** Bind the graphics framebuffer to the baseLayer's framebuffer. */
-//   const framebuffer = xrSession.renderState.baseLayer.framebuffer
-//   gl.bindFramebuffer(gl.FRAMEBUFFER, framebuffer)
-//   renderer.setFramebuffer(framebuffer);
-
-//   /** Retrieve the pose of the device.
-//    * XRFrame.getViewerPose can return null while the session attempts to establish tracking. */
-//   const pose = frame.getViewerPose(localReferenceSpace);
-//   if (pose) {
-//   //   /** In mobile AR, we only have one view. */
-//       const view = pose.views[0];
-//   //
-//   const viewport = xrSession.renderState.baseLayer.getViewport(view);
-//   renderer.setSize(viewport.width, viewport.height)
-//   //
-//   //   /** Use the view's transform matrix and projection matrix to configure the THREE.camera. */
-//   camera.matrix.fromArray(view.transform.matrix)
-//   camera.projectionMatrix.fromArray(view.projectionMatrix);
-//   camera.updateMatrixWorld(true);
-//   //
-//   //   /** Conduct hit test. */
-//       const hitTestResults = frame.getHitTestResults(hitTestSource);
-//   //
-//   //   /** If we have results, consider the environment stabilized. */
-//       if (!stabilized && hitTestResults.length > 0) {
-//         stabilized = true;
-//         document.body.classList.add('stabilized');
-//       }
-//       if (hitTestResults.length > 0) {
-//         const hitPose = hitTestResults[0].getPose(localReferenceSpace);
-//   //
-//   //     /** Update the reticle position. */
-//       reticle.visible = true;
-//       reticle.position.set(hitPose.transform.position.x, hitPose.transform.position.y, hitPose.transform.position.z)
-//       reticle.updateMatrixWorld(true);
-//       }
-//   //   /** Render the scene with THREE.WebGLRenderer. */
-//   renderer.render(scene, camera)
-//   }
-// }
 
 // /**
 //      * Initialize three.js specific rendering code, including a WebGLRenderer,

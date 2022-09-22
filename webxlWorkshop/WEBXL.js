@@ -46,7 +46,7 @@ const onSessionStarted = async (xrSession) => {
   setupThreeJs();
 
   /** Start a rendering loop using onXRFrame. */
-  xrSession.requestAnimationFrame(onXRFrame);
+  xrSession.requestAnimationFrame(onXRFrame(xrSession));
 
   xrSession.addEventListener("select", onSelect());
 }
@@ -77,7 +77,7 @@ const setupThreeJs=()=> {
   camera.matrixAutoUpdate = false;
 }
 
-const onXRFrame = (time, frame) => {
+const onXRFrame = (xrSession,time, frame) => {
   console.log(xrSession);
 /** Create another XRReferenceSpace that has the viewer as the origin. */
 let viewerSpace = xrSession.requestReferenceSpace('viewer');

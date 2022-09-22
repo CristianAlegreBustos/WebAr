@@ -78,6 +78,7 @@ const setupThreeJs=()=> {
 }
 
 const onXRFrame = (time, frame,xrSession) => {
+  console.log(xrSession);
 /** Create another XRReferenceSpace that has the viewer as the origin. */
 let viewerSpace = xrSession.requestReferenceSpace('viewer');
 

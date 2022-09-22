@@ -94,7 +94,7 @@ const onXRFrame = (xrSession,hitTestSource,localReferenceSpace, time, frame) => 
   // Watch if work OK ¿?
 
   /** Queue up the next draw request. */
-  xrSession.requestAnimationFrame(onXRFrame());
+  xrSession.requestAnimationFrame(onXRFrame(time, frame));
 
   console.log("Salimooos")
   /** Bind the graphics framebuffer to the baseLayer's framebuffer. */
